@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use APP\Models\ProductDetail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 
 class BaseController extends Controller
 {
@@ -29,13 +30,21 @@ class BaseController extends Controller
         return view('fronten.delivery');
     }
 
-    public function cart(){
-        return view('fronten.cart');
+    public function cart(){ 
+        $carts = [];
+        if(Auth::user()){
+            $user_id = Auth::user()->id;
+            $carts = Cart::where('user_id', $user_id)->get();
+
+        }
+
+        return view('fronten.cart',compact('carts'));
     }
 
     public function productView(Request $request){
         $id = $request->id;
         $products = Product::with('productDetail')->find($id);
+        
        $category_id = $products->category_id;
        $related_products= Product::where('category_id',$category_id)->get();
 

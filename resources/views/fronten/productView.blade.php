@@ -34,17 +34,25 @@
                         <h3>{{ $products->name }} </h3>
                         <small> {{ $products->productDetail->title }}</small>
                         <hr class="soft" />
-                        <form class="form-horizontal qtyFrm">
+                        {{-- <form class="form-horizontal qtyFrm"> --}}
                             <div class="control-group">
                                 <label class="control-label"><span>${{ $products->price}}</span></label>
                                 <div class="controls">
-                                    <input type="number" class="span1" placeholder="Qty." />
-                                    <button type="submit"
-                                        class="btn btn-large btn-primary pull-right"> Add to cart <i
-                                            class=" icon-shopping-cart"></i></button>
+                                    <form action=" {{ route('CartStore') }}" method="post">
+                                        @csrf
+                                    <input type="number" class="span1" name="quantity" placeholder="Qty." required />
+                                    <input type="hidden" value="{{ $products->id }}" name="product_id" />
+                                    @if(Auth::user())
+                                    <button type="submit" class="btn btn-large btn-primary pull-right"> Add too cart
+                                     <i class=" icon-shopping-cart"></i></button>
+                                    @else
+                                    <button  class="btn btn-large btn-primary pull-right"> <a href="{{ route('userregister ') }}">Add too cart
+                                        <i class=" icon-shopping-cart"></i></a></button>
+                                     @endif
+                                    </form>
                                 </div>
                             </div>
-                        </form>
+                        {{-- </form> --}}
 
                         <hr class="soft" />
                         <h4>{{ $products->productDetail->total_items }}</h4>

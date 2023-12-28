@@ -54,6 +54,6 @@
             <script src="themes/js/bootshop.js"></script>
             <script src="themes/js/jquery.lightbox-0.5.js"></script>
             
-         
+            @stack('footer-script')
 </body>
 </html>

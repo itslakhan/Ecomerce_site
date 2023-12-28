@@ -62,7 +62,7 @@
        <ul id="sidebarnav"> 
         <li class="nav-small-cap">
           <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-          <span class="hide-menu">Product Manage</span>
+          <span class="hide-menu">Product Manager</span>
         </li>
         <li class="sidebar-item">
           <a class="sidebar-link" href="{{ route('Products.list') }}" aria-expanded="false">
@@ -80,6 +80,21 @@
             <span class="hide-menu">Product create </span>
           </a>
         </li>
+       </ul>
+       <ul id="sidebarnav"> 
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">User Manager</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="{{ route('userdetails') }}" aria-expanded="false">
+            <span>
+              <i class="ti ti-layout-dashboard"></i>
+            </span>
+            <span class="hide-menu">User List </span>
+          </a>
+        </li>
+        
        </ul>
          </div>
        </div>

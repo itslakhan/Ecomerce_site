@@ -5,8 +5,10 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\authcontroller;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
-
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductBokingController;
+use App\Models\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +44,15 @@ Route::get('userregister', [BaseController::class, 'userlogout'])->name('userlog
 Route::get('admin-login', [authcontroller::class, 'login'])->name('admin-login');
 Route::post('admin-login', [authcontroller::class, 'makelogin'])->name('make_login');
 
-Route::group(['middleware' => 'auth'],function(){
+Route::post('Cart-store', [CartController::class, 'store'])->name('CartStore');
+Route::delete('cart/delete/{id}', [CartController::class, 'destroy'])->name('CartDelete');
+
+Route::delete('product_boking/', [ProductBokingController::class, 'store'])->name('product_boking');
+
+
+
+
+Route::group(['middleware' => 'auth'],function(){   
 
 Route::get('logout', [authcontroller::class, 'logout'])->name('logout');
 Route::get('dashboard', [authcontroller::class, 'dashboard'])->name('dashboard');
@@ -66,7 +76,9 @@ Route::post('productupdate/{id}', [ProductController::class, 'update'])->name('p
 
 Route::get('extradetails/{id}', [ProductController::class, 'extradetails'])->name('product.extradetails');
 Route::post('extradetails/{id}', [ProductController::class, 'extradetailstore'])->name('product.extradetailstore');
+ 
 
+route::get('userdetails',[UserController::class, 'index'])->name('userdetails');
 
 
 
